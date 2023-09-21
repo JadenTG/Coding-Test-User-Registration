@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Mooli&family=Ubuntu&display=swap" rel="stylesheet">
+    
+    
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            margin: 0%;
+            padding: 0%;
+
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Mooli', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
+
+            background-color: grey;
+        }
+
+        nav{
+            width: 100%;
+            height: 15vh;
+
+            background-color: black;
+            color: whitesmoke;
+
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .mainDiv{
+            border: solid 1px black;
+            border-radius: 5px;
+            width: 30%;
+            height: 41vh;
+            padding: 10px;
+
+            margin: 10px;
+        }
+
+        label{
+            font-size: 20px;
+        }
+
+        input{
+            width: 50%;
+            height: 2vh;
+
+            border-radius: 5px;
+            border: 1px black solid;
+        }
+
+        .forEach{
+            border: solid 1px black;
+            border-radius: 5px;
+            width: 25%;
+            height: 30vh;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #divs{
+            background-color: rgb(186, 185, 185);
+        }
+
+        button{
+            width: 20%;
+            height: 10%;
+            border-radius: 5px;
+            border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>User Registration</h1>
+    </nav>
+    <br>
+    <div class="mainDiv" id="divs">
+    <form action="/add" method="post"> 
+        <label for="fname">Name:</label><br>
+        <input type="text" name="name" placeholder="User Name" required><br><br>
+
+        <label for="org">Organization:</label><br>
+        <input type="text" name="org" placeholder="West-mec" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" placeholder="example@gmail.com" required><br><br>
+
+        <label for="phone">Phone:</label><br>
+        <input type="tel" name="phone" placeholder="123-456-7890" required><br><br>
+
+        <label for="addy">Address</label><br>
+        <input type="text" name="addy" placeholder="1234 N Somwhere Dr" required><br><br>
+
+        <button type="submit" class="button">Register</button>
+    </form><br>
+    </div>
+    <br>
+    
+    <% users.forEach(user => { %>
+        <div class="forEach" id="divs">
+        
+            <h3>Name: <%= user.name %></h3>
+            <h3>Organization: <%= user.org %></h3>
+            <h3>Email: <%= user.email %></h3>
+            <h3>Phone: <%= user.phone %></h3>
+            <h3>Address: <%= user.addy %></h3>
+            <form action="/edit/<%= user._id %>" method="get" style="display: inline;">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/delete/<%= user._id %>" method="post" style="display: inline;">
+                <button type="submit">Delete</button>
+            </form>
+        
+        <br>
+    </div>
+    <br>
+    <% }); %>
+    
+</body>
+</html>
